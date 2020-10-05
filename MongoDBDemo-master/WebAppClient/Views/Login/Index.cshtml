@@ -1,0 +1,39 @@
+﻿@model WebAppClient.ViewModels.UserVM
+
+<!DOCTYPE html>
+@{
+    ViewData["Title"] = "Index";
+}
+
+@{
+    Layout = null;
+}
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" type="text/css" />
+</head>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <h1 class="col-md-10" style="margin-left: 0.3em">Login </h1>
+
+        <div class="col-md-10" style="margin-bottom: 1em;">
+            @Html.LabelFor(m => m.EmailAdress, new { @class = "col-md-2" })
+            @Html.TextBoxFor(model => model.EmailAdress, new { placeholder = "Email", required = "required" })*
+            @Html.ValidationMessageFor(model => model.EmailAdress)
+        </div>
+
+        <div class="col-md-10" style=" margin-bottom: 1em;">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2" })
+            @Html.PasswordFor(m => m.Password, new { placeholder = "Password", required = "required" })*
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+
+        <div class="col-md-offset-2 col-md-10">
+            <div>
+                <button type="submit">Login</button>
+            </div>
+        </div>
+    </div>
+}

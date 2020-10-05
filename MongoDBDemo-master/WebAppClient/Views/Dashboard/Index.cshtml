@@ -1,0 +1,17 @@
+﻿@model WebAppClient.ViewModels.DashboardVM
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Dashboard</h2>
+
+<div>  @string.Format($"Amount Of Open Tickets: {Model.OpenTickets.Count()} / {Model.AllTickets.Count()}") </div>
+<div>  @string.Format($"Overdue Tickets: {Model.OverdueTickets.Count()}") </div>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

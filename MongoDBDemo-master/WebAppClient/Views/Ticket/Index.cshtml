@@ -1,0 +1,103 @@
+﻿@model WebAppClient.ViewModels.TicketsVM
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@functions
+{
+    enum populairKeys
+    {
+        Password,
+        Computer,
+        Phone,
+        App,
+        Printer,
+        Scanner
+    }
+}
+<h2>All Tickets</h2>
+
+<p>
+    @Html.ActionLink("Add New Ticket", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    @Html.TextBoxFor(x => x.TextSearch, new { placeholder = "Search", required = "required" })
+    @Html.ValidationMessageFor(x => x.TextSearch)
+    <button style ="margin-bottom: 1em" type="submit">Search</button>
+}
+
+@using (Html.BeginForm("Index", "Ticket", FormMethod.Post))
+{
+    @Html.Label("Sort:");
+    <button style ="margin-bottom: 1em" type="submit" value="submit" name="submitSearch">Sort</button>
+}
+
+@using (Html.BeginForm("Index", "Ticket", FormMethod.Post))
+{
+    @Html.DropDownListFor(model => model.FilterKeyword, new SelectList(Enum.GetValues(typeof(populairKeys))), new { htmlAttributes = new { @class = "form-control" } })
+    <button style ="margin-bottom: 1em" type="submit" value="submit" name="submitFilter">Filter Keyword</button>
+}
+
+@using (Html.BeginForm("Index", "Ticket", FormMethod.Post))
+{
+    <button style ="margin-bottom: 1em" type="submit" value="submit" name="submitArchive">Archive Tickets</button>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                <p>Id</p>
+            </th>
+            <th>
+                <p>Date</p>
+            </th>
+            <th>
+                <p>Subject</p>
+            </th>
+            <th>
+                <p>User</p>
+            </th>
+            <th>
+                <p>Priority</p>
+            </th>
+            <th>
+                <p>Status</p>
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model.lstTickets)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTime)
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            <td>
+                @Html.DisplayFor(modelItem => item.Priority)
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { Id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { Id = item.Id })
+            </td>
+        </tr>
+        }
+    </tbody>
+
+</table>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
