@@ -11,8 +11,11 @@ namespace Models
     {
         public Ticket()
         {
-            DateTime = DateTime.UtcNow;   
+            TimeZoneInfo timeZone = TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time");
+            DateTime timeUTC = DateTime.UtcNow;
+            DateTime = TimeZoneInfo.ConvertTimeFromUtc(timeUTC, timeZone);          
         }
+
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
         public DateTime DateTime { get; set; }

@@ -10,7 +10,7 @@ namespace WebAppClient.ViewModels
     {
         public IEnumerable<Ticket> lstTickets { get; set; }
         public string TextSearch { get; set; }
-
         public string FilterKeyword { get; set; }
+        public string Login { get; set; }
     }
 }

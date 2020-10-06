@@ -6,6 +6,6 @@ namespace Models
 {
     public enum UserEnum
     {
-        Employee, User
+        Admin, Employee
     }
 }

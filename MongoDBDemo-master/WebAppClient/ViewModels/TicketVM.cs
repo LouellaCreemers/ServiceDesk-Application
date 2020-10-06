@@ -35,5 +35,6 @@ namespace WebAppClient.ViewModels
         public string Description { get; set; }
 
         public virtual SelectList UserList { get; set; }
+        public string Login { get; set; }
     }
 }

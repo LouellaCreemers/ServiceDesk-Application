@@ -28,7 +28,10 @@ namespace WebAppClient.Controllers
 
             TicketsVM allTicketsVM = new TicketsVM();
 
-            var definiteDate = DateTime.Now;
+            var type = TempData.Peek("Type");
+            allTicketsVM.Login = type.ToString();
+
+
 
             if (ticketResponse.IsSuccessStatusCode)
             {
@@ -218,17 +221,28 @@ namespace WebAppClient.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(string id, TicketVM ticketVM)
+        public async Task<IActionResult> Edit(string id, TicketVM ticketVM, string adminSave, string employeeSave)
         {
             JsonPatchDocument<Ticket> patchDoc = new JsonPatchDocument<Ticket>();
-            patchDoc.Replace(e => e.DateTime, DateTime.Now);
-            patchDoc.Replace(e => e.Subject, ticketVM.Subject);
-            patchDoc.Replace(e => e.Type, ticketVM.Type);
-            patchDoc.Replace(e => e.UserName, ticketVM.UserName);
-            patchDoc.Replace(e => e.Priority, ticketVM.Priority);
-            patchDoc.Replace(e => e.Deadline, ticketVM.Deadline);
-            patchDoc.Replace(e => e.Status, ticketVM.Status);
-            patchDoc.Replace(e => e.Description, ticketVM.Description);
+
+            if (!string.IsNullOrEmpty(adminSave))
+            {
+                patchDoc.Replace(e => e.DateTime, DateTime.Now);
+                patchDoc.Replace(e => e.Subject, ticketVM.Subject);
+                patchDoc.Replace(e => e.Type, ticketVM.Type);
+                patchDoc.Replace(e => e.UserName, ticketVM.UserName);
+                patchDoc.Replace(e => e.Priority, ticketVM.Priority);
+                patchDoc.Replace(e => e.Deadline, ticketVM.Deadline);
+                patchDoc.Replace(e => e.Status, ticketVM.Status);
+                patchDoc.Replace(e => e.Description, ticketVM.Description);
+            }
+            else 
+            {
+                patchDoc.Replace(e => e.DateTime, DateTime.Now);
+                patchDoc.Replace(e => e.UserName, ticketVM.UserName);
+                patchDoc.Replace(e => e.Status, ticketVM.Status);
+            }
+
 
             //serialize patch
             var serializedPatch = JsonConvert.SerializeObject(patchDoc);

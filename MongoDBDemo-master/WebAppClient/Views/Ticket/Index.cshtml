@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    TempData["Type"] = Model.Login;
 }
 
 @functions
@@ -88,8 +89,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Status)
             <td>
-                @Html.ActionLink("Edit", "Edit", new { Id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { Id = item.Id })
+                @if(Model.Login == "Employee")
+                {
+                    @Html.ActionLink("Edit", "Edit", new { Id = item.Id })
+                }
+                else
+                {
+                    @Html.ActionLink("Edit |", "Edit", new { Id = item.Id }) 
+                    @Html.ActionLink(" Delete", "Delete", new { Id = item.Id });
+                }
             </td>
         </tr>
         }

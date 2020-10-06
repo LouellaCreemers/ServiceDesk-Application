@@ -21,7 +21,10 @@ namespace WebAppClient.Controllers
             HttpClient client = MVCClientHttpClient.GetClient();
             HttpResponseMessage userResponse = await client.GetAsync("api/user/");
 
-             UsersVM allUsersVM = new UsersVM();
+            UsersVM allUsersVM = new UsersVM();
+
+            var type = TempData.Peek("Type");
+            allUsersVM.Login = type.ToString();
 
             if (userResponse.IsSuccessStatusCode)
             {

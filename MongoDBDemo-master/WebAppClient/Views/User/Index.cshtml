@@ -4,9 +4,13 @@
 
 <h2>All Users</h2>
 
-<p>
-    @Html.ActionLink("Add New User", "Create")
-</p>
+
+@if (Model.Login == "Admin") 
+{
+    <p>
+        @Html.ActionLink("Add New User", "Create")
+    </p>
+}
 
 @using (Html.BeginForm())
 {
@@ -58,10 +62,13 @@
         @Html.DisplayFor(modelItem => item.Phonenumber)
     <td>
         @Html.DisplayFor(modelItem => item.Location)
-    </td>
     <td>
-        @Html.ActionLink("Edit", "Edit", new { Id = item.Id }) |
-        @Html.ActionLink("Delete", "Delete", new { Id = item.Id })
+    @if (Model.Login == "Admin")
+    {
+        @Html.ActionLink("Edit |", "Edit", new { Id = item.Id }) 
+
+        @Html.ActionLink("Delete", "Delete", new { Id = item.Id });
+    }
     </td>
 </tr>}
 

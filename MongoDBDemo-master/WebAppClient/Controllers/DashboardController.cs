@@ -37,6 +37,5 @@ namespace WebAppClient.Controllers
             return View(model);
 
         }
-
     }
 }

@@ -36,6 +36,7 @@ namespace WebAppClient.Controllers
                 HttpResponseMessage userResponse = await client.GetAsync("api/user/");
 
                 UsersVM AllUsersVM = new UsersVM();
+                TicketsVM ticketsVM = new TicketsVM();
 
 
                 if (userResponse.IsSuccessStatusCode)
@@ -50,11 +51,14 @@ namespace WebAppClient.Controllers
 
                 try
                 {
-                    var userlog = new GenericPrincipal(new GenericIdentity(user.EmailAdress), new string[] { AllUsersVM.lstUser.Where(u => u.EmailAdress == user.EmailAdress && u.Password == user.Password).ToList()[0].Type.ToString() });
-
-                    if (!userlog.Equals(null))
+                    //var userlog = new GenericPrincipal(new GenericIdentity(user.EmailAdress), new string[] { AllUsersVM.lstUser.Where(u => u.EmailAdress == user.EmailAdress && u.Password == user.Password).ToList().ToString() });
+                    var loggedInUser = AllUsersVM.lstUser.Single(x => (x.Password == user.Password) && (x.EmailAdress == user.EmailAdress));
+                    if (!loggedInUser.Equals(null))
                     {
-                        return RedirectToAction("Index", "Dashboard", AllUsersVM);
+
+                        TempData["Type"] = loggedInUser.Type.ToString();
+
+                        return RedirectToAction("Index", "Dashboard",  ticketsVM.Login);
                     }
                     else
                     {

@@ -25,7 +25,7 @@ namespace DAL
         {
             var _collectionGetter = mongoDataBase.GetCollection<User>("Users");
             var list = _collectionGetter.Find(_ => true).ToList();
-            return list.Where(x => x.Type == UserEnum.Employee);
+            return list;
         }
 
         public void AddToArchive(Ticket ticket, string collection)
