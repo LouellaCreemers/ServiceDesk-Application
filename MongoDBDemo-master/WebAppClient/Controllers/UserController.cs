@@ -61,7 +61,6 @@ namespace WebAppClient.Controllers
                 {
                     return Content("An error occurred.");
                 }
-                return View(model);
             }
             else
             {

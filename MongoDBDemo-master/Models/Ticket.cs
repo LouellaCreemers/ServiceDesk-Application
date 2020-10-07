@@ -21,7 +21,7 @@ namespace Models
         public DateTime DateTime { get; set; }
         public string Subject { get; set; }
         public TypeOfIncidentEnum Type { get; set; }
-        public String UserName { get; set; }
+        public string NameOfUser { get; set; }
         public PriorityOfIncidentEnum Priority { get; set; }
         public DeadlineEnum Deadline { get; set; }
         public TicketStatusEnum Status { get; set; }

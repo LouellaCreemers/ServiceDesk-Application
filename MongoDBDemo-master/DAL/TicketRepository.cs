@@ -11,21 +11,10 @@ namespace DAL
     {
         private IMongoDatabase mongoDataBase;
         private string _databaseName;
-
         string connectionString = "mongodb+srv://lou:lou@cluster0.wewsm.gcp.mongodb.net/test?authSource=admin&replicaSet=atlas-lznwzk-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true";
 
         public TicketRepository() : base()
         {   
-            var client = new MongoClient(connectionString);
-            _databaseName = "TheGardenGroup";
-            mongoDataBase = client.GetDatabase(_databaseName);
-        }
-
-        public IEnumerable<User> GetEmployeesForTicket()
-        {
-            var _collectionGetter = mongoDataBase.GetCollection<User>("Users");
-            var list = _collectionGetter.Find(_ => true).ToList();
-            return list;
         }
 
         public void AddToArchive(Ticket ticket, string collection)

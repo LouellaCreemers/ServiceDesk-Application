@@ -64,10 +64,10 @@
             @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
         </div>
 
-        @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2 box" })
+        @Html.LabelFor(model => model.NameOfUser, htmlAttributes: new { @class = "control-label col-md-2 box" })
         <div class="col-md-10" style="margin-bottom: 1em">
-            @Html.DropDownListFor(model => model.UserName, Model.UserList)
-            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+            @Html.DropDownListFor(model => model.NameOfUser, Model.UserList)
+            @Html.ValidationMessageFor(model => model.NameOfUser, "", new { @class = "text-danger" })
         </div>
 
         @Html.LabelFor(model => model.Priority, htmlAttributes: new { @class = "control-label col-md-2" })

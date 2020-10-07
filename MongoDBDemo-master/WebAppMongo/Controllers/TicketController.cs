@@ -98,12 +98,6 @@ namespace WebAppMongo.Controllers
             return Ok();
         }
 
-        [Route("/api/ticket/getemployeelist")]
-        public ActionResult<IEnumerable<User>> GetEmployees()
-        {
-            return Ok(_service.GetAllEmployeesForTicket());
-        }
-
         [Route("/api/ticket/deleteticket/{id}")]
         public IActionResult DeleteTicket(string id)
         {

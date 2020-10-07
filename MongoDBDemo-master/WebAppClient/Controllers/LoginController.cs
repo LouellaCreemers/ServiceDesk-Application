@@ -36,8 +36,6 @@ namespace WebAppClient.Controllers
                 HttpResponseMessage userResponse = await client.GetAsync("api/user/");
 
                 UsersVM AllUsersVM = new UsersVM();
-                TicketsVM ticketsVM = new TicketsVM();
-
 
                 if (userResponse.IsSuccessStatusCode)
                 {
@@ -55,10 +53,9 @@ namespace WebAppClient.Controllers
                     var loggedInUser = AllUsersVM.lstUser.Single(x => (x.Password == user.Password) && (x.EmailAdress == user.EmailAdress));
                     if (!loggedInUser.Equals(null))
                     {
-
                         TempData["Type"] = loggedInUser.Type.ToString();
-
-                        return RedirectToAction("Index", "Dashboard",  ticketsVM.Login);
+                        AllUsersVM.LoginAccepted = true;
+                        return RedirectToAction("Index", "Dashboard",AllUsersVM);
                     }
                     else
                     {

@@ -28,11 +28,6 @@ namespace Services.TicketService
             return _repo.Count(collection);
         }
 
-        public IEnumerable<User> GetAllEmployeesForTicket()
-        {
-            return _repo.GetEmployeesForTicket();
-        }
-
         public IEnumerable<Ticket> CountOpenTickets()
         {
             var list = _repo.GetAll(collection);

@@ -35,8 +35,6 @@ namespace WebAppClient.ViewModels
 
         [DisplayName("Location: ")]
         public string Location { get; set; }
-
-        public string Login { get; set; }
     }
     
 }

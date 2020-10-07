@@ -16,26 +16,27 @@ namespace WebAppClient.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(DashboardVM model)
         {
-            HttpClient client = MVCClientHttpClient.GetClient();
-            HttpResponseMessage allResponse = await client.GetAsync("api/ticket/");
-            HttpResponseMessage openResponse = await client.GetAsync("api/ticket/countticketopen/");
-            HttpResponseMessage overdueResponse = await client.GetAsync("api/ticket/countticketoverdue/");
-
-            if (allResponse.IsSuccessStatusCode && openResponse.IsSuccessStatusCode)
+            if (ModelState.IsValid) 
             {
-                string allContent = await allResponse.Content.ReadAsStringAsync();
-                string openContent = await openResponse.Content.ReadAsStringAsync();
-                string overdueContent = await overdueResponse.Content.ReadAsStringAsync();
+                HttpClient client = MVCClientHttpClient.GetClient();
+                HttpResponseMessage allResponse = await client.GetAsync("api/ticket/");
+                HttpResponseMessage openResponse = await client.GetAsync("api/ticket/countticketopen/");
+                HttpResponseMessage overdueResponse = await client.GetAsync("api/ticket/countticketoverdue/");
 
-                model.AllTickets = JsonConvert.DeserializeObject<IEnumerable<Ticket>>(allContent);
-                model.OpenTickets = JsonConvert.DeserializeObject<IEnumerable<Ticket>>(openContent);
-                model.OverdueTickets = JsonConvert.DeserializeObject<IEnumerable<Ticket>>(overdueContent);
+                if (allResponse.IsSuccessStatusCode && openResponse.IsSuccessStatusCode && overdueResponse.IsSuccessStatusCode)
+                {
+                    string allContent = await allResponse.Content.ReadAsStringAsync();
+                    string openContent = await openResponse.Content.ReadAsStringAsync();
+                    string overdueContent = await overdueResponse.Content.ReadAsStringAsync();
+
+                    model.AllTickets = JsonConvert.DeserializeObject<IEnumerable<Ticket>>(allContent);
+                    model.OpenTickets = JsonConvert.DeserializeObject<IEnumerable<Ticket>>(openContent);
+                    model.OverdueTickets = JsonConvert.DeserializeObject<IEnumerable<Ticket>>(overdueContent);
+                }
+
+                else { return View(new DashboardVM()); }
             }
-
-            else { return View(new DashboardVM()); }
-
             return View(model);
-
         }
     }
 }

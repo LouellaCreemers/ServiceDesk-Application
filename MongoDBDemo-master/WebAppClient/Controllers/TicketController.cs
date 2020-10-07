@@ -28,10 +28,8 @@ namespace WebAppClient.Controllers
 
             TicketsVM allTicketsVM = new TicketsVM();
 
-            var type = TempData.Peek("Type");
-            allTicketsVM.Login = type.ToString();
-
-
+            var tempData = TempData.Peek("Type").ToString();
+            allTicketsVM.Login = tempData;
 
             if (ticketResponse.IsSuccessStatusCode)
             {
@@ -50,6 +48,8 @@ namespace WebAppClient.Controllers
         public async Task<IActionResult> Index(TicketsVM model, string submitSearch, string submitFilter, string submitArchive)
         {
             HttpClient client = MVCClientHttpClient.GetClient();
+            var tempData = TempData.Peek("Type").ToString();
+            model.Login = tempData;
 
             if (ModelState.IsValid && !string.IsNullOrEmpty(submitSearch))
             {
@@ -90,9 +90,10 @@ namespace WebAppClient.Controllers
                 else
                 { 
                     var result = JsonConvert.DeserializeObject<IEnumerable<Ticket>>(Content);
+
                     foreach (var item in result) 
                     {
-                        Delete(item.Id);
+                       await Delete(item.Id);
                     }
 
                     return this.RedirectToAction("Index");
@@ -151,7 +152,7 @@ namespace WebAppClient.Controllers
 
             //Getting Employees to use for ticket form
             HttpClient client = MVCClientHttpClient.GetClient();
-            HttpResponseMessage userResponse = await client.GetAsync("/api/ticket/getemployeelist");
+            HttpResponseMessage userResponse = await client.GetAsync("/api/user/");
 
             if (userResponse.IsSuccessStatusCode)
             {
@@ -194,7 +195,7 @@ namespace WebAppClient.Controllers
                 TicketVM ticketVM = new TicketVM();
 
                 HttpClient clientEmployees = MVCClientHttpClient.GetClient();
-                HttpResponseMessage userResponse = await client.GetAsync("/api/ticket/getemployeelist");
+                HttpResponseMessage userResponse = await client.GetAsync("/api/user/");
 
                 if (userResponse.IsSuccessStatusCode)
                 {
@@ -212,6 +213,7 @@ namespace WebAppClient.Controllers
                 ticketVM.Priority = foundTicket.Priority;
                 ticketVM.Status = foundTicket.Status;
                 ticketVM.Subject = foundTicket.Subject;
+                ticketVM.Login = TempData.Peek("Type").ToString();
 
                 return View(ticketVM);
 
@@ -230,7 +232,7 @@ namespace WebAppClient.Controllers
                 patchDoc.Replace(e => e.DateTime, DateTime.Now);
                 patchDoc.Replace(e => e.Subject, ticketVM.Subject);
                 patchDoc.Replace(e => e.Type, ticketVM.Type);
-                patchDoc.Replace(e => e.UserName, ticketVM.UserName);
+                patchDoc.Replace(e => e.NameOfUser, ticketVM.NameOfUser);
                 patchDoc.Replace(e => e.Priority, ticketVM.Priority);
                 patchDoc.Replace(e => e.Deadline, ticketVM.Deadline);
                 patchDoc.Replace(e => e.Status, ticketVM.Status);
@@ -239,7 +241,7 @@ namespace WebAppClient.Controllers
             else 
             {
                 patchDoc.Replace(e => e.DateTime, DateTime.Now);
-                patchDoc.Replace(e => e.UserName, ticketVM.UserName);
+                patchDoc.Replace(e => e.NameOfUser, ticketVM.NameOfUser);
                 patchDoc.Replace(e => e.Status, ticketVM.Status);
             }
 

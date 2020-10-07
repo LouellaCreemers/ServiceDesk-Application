@@ -20,7 +20,7 @@ namespace WebAppClient.ViewModels
         public TypeOfIncidentEnum Type { get; set; }
 
         [DisplayName("Reported By User: ")]
-        public String UserName { get; set; }
+        public string NameOfUser { get; set; }
 
         [DisplayName("Priority: ")]
         public PriorityOfIncidentEnum Priority { get; set; }

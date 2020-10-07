@@ -12,7 +12,6 @@ namespace Services.TicketService
         IEnumerable<Ticket> GetAllTickets();
         IEnumerable<Ticket> GetAllTicketsSorted();
         IEnumerable<Ticket> GetAllTicketsSearch(string input);
-        IEnumerable<User> GetAllEmployeesForTicket();
         IEnumerable<Ticket> GetAllOldTickets();
         IEnumerable<Ticket> CountOverdueTickets();
         IEnumerable<Ticket> CountOpenTickets();

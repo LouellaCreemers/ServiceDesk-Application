@@ -2,8 +2,8 @@
 
 @{
     ViewData["Title"] = "Index";
-    TempData["Type"] = Model.Login;
 }
+
 
 @functions
 {
@@ -83,7 +83,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Subject)
             <td>
-                @Html.DisplayFor(modelItem => item.UserName)
+                @Html.DisplayFor(modelItem => item.NameOfUser)
             <td>
                 @Html.DisplayFor(modelItem => item.Priority)
             <td>
