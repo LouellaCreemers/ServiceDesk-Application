@@ -7,6 +7,7 @@ using Models;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebAppClient.ViewModels
 {
@@ -28,7 +29,6 @@ namespace WebAppClient.ViewModels
 
         [DisplayName("Password: ")]
         public string Password { get; set; }
-
 
         [DisplayName("Phone number: ")]
         public string PhoneNumber { get; set; }
