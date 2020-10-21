@@ -40,7 +40,7 @@ namespace Services.UserServices
         public IEnumerable<User> GetAllUsersSearch(string input)
         {
            var list = _repo.GetAll(collection);
-           return list.Where(y => (y.EmailAdress.Contains(input)) || (y.FirstName.Contains(input) || (y.EmailAdress.Contains(input.ToLower())) || (y.FirstName.Contains(input.ToLower()))));
+           return list.Where(y => (y.EmailAdress.Contains(input)) || (y.EmailAdress.Contains(input.ToLower())));
         }
 
         public void AddUser(User user)

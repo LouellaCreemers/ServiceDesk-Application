@@ -15,24 +15,33 @@
 
 @using (Html.BeginForm())
 {
-    <div class="form-group">
-        <h1 class="col-md-10" style="margin-left: 0.3em">Login </h1>
+    <div class="container">
 
-        <div class="col-md-10" style="margin-bottom: 1em;">
-            @Html.LabelFor(m => m.EmailAdress, new { @class = "col-md-2" })
-            @Html.TextBoxFor(model => model.EmailAdress, new { placeholder = "Email", required = "required" })*
-            @Html.ValidationMessageFor(model => model.EmailAdress)
+        <div class="row">
+            <h1 style="margin-left:0.75em">Login</h1>
+            <div class="col-lg-1">
+                @Html.LabelFor(m => m.EmailAdress, new { @class = "col-md-2" })
+            </div>
+            <div class="col-lg-1">
+                @Html.TextBoxFor(model => model.EmailAdress, new { placeholder = "Email", required = "required" })
+                @Html.ValidationMessageFor(model => model.EmailAdress)
+            </div>
+               
         </div>
 
-        <div class="col-md-10" style=" margin-bottom: 1em;">
-            @Html.LabelFor(m => m.Password, new { @class = "col-md-2" })
-            @Html.PasswordFor(m => m.Password, new { placeholder = "Password", required = "required" })*
-            @Html.ValidationMessageFor(model => model.Password)
+        <div class="row" style="margin-top:1em;">
+            <div class="col-lg-1">
+                @Html.LabelFor(m => m.Password, new { @class = "col-md-2" })
+            </div>
+            <div class="col-lg-1">
+                @Html.PasswordFor(m => m.Password, new { placeholder = "Password", required = "required" })
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>
         </div>
 
-        <div class="col-md-offset-2 col-md-10">
+        <div class="col-lg-1-12" style="margin-top:1em;margin-left:1em;">
             <div>
-                <button type="submit">Login</button>
+                <button type="submit" class="btn btn-primary">Login</button>
             </div>
         </div>
     </div>

@@ -236,13 +236,13 @@ namespace WebAppClient.Controllers
                 patchDoc.Replace(e => e.Priority, ticketVM.Priority);
                 patchDoc.Replace(e => e.Deadline, ticketVM.Deadline);
                 patchDoc.Replace(e => e.Status, ticketVM.Status);
-                patchDoc.Replace(e => e.Description, ticketVM.Description);
             }
             else 
             {
                 patchDoc.Replace(e => e.DateTime, DateTime.Now);
                 patchDoc.Replace(e => e.NameOfUser, ticketVM.NameOfUser);
                 patchDoc.Replace(e => e.Status, ticketVM.Status);
+                patchDoc.Replace(e => e.Description, ticketVM.Description);
             }
 
 

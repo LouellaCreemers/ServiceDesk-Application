@@ -14,9 +14,9 @@
 
 @using (Html.BeginForm())
 {
-    @Html.TextBoxFor(x => x.TextSearch, new { placeholder = "Search", required = "required" })
+    @Html.TextBoxFor(x => x.TextSearch, new { placeholder = "Search by email", required = "required" })
     @Html.ValidationMessageFor(x => x.TextSearch)
-    <button type="submit">Search</button>
+    <button type="submit" class="btn-primary btn-sm">Search</button>
 }
 
 <table class="table">
@@ -45,7 +45,7 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model.lstUser)
+    @foreach (var item in Model.lstUser.Reverse())
     {
 <tr>
     <td>

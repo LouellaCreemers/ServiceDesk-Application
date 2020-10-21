@@ -6,9 +6,13 @@
 
 <h2>Dashboard</h2>
 
-<div>  @string.Format($"Amount Of Open Tickets: {Model.OpenTickets.Count()} / {Model.AllTickets.Count()}") </div>
-<div>  @string.Format($"Overdue Tickets: {Model.OverdueTickets.Count()}") </div>
-
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4" style="background-color:lightblue;border-style:solid;font-size:1.5em">  @string.Format($"Amount Of Open Tickets: {Model.OpenTickets.Count()} / {Model.AllTickets.Count()}") </div>
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4" style="background-color:lightblue;border-style:solid;font-size:1.5em">  @string.Format($"Overdue Tickets: {Model.OverdueTickets.Count()}") </div>
+    </div>
+</div>
 
 
 
