@@ -1,0 +1,34 @@
+Groep INF2C-4:
+Murat Celem 642213
+Louëlla Creemers 641347
+Tristan Groot 651094
+Matthijs Volman 649411 
+
+Login:
+-Admin
+email: lou@lou.nl
+password: lou
+
+-User
+email: yuk@tgg.nl
+password: password139
+
+
+Additional functions:
+users and roles (+ loginscreen)
+sorting ticketlist (prio + date)
+archive db > 2 years
+prio escalate
+closing tickets
+
+Flow for 1: Start project > Fill in user credentails > Click on 'Login' button
+
+Flow for 2: Login > Go to Ticket Management > Click on 'Sort' button
+
+Flow for 3: Login > Go to Ticket Management > Click on 'Archive Tickets' button > Every ticket older than 2 years goes to 'ArchiveTGG' Database
+
+Flow for 4: Login > Go to Ticket Management > Click on 'Edit' next to the ticket you want to escalate > Change Priority to liking > Click submit
+
+Flow for 5: Login > Go to Ticket Management > Click on 'Edit' next to the ticket you want to close > Change Status to 'Closed' > Click submit
+
+Github link: https://github.com/ghostlylou/TGGproject
