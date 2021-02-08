@@ -24,6 +24,7 @@ namespace WebAppClient.Controllers
         public string errorMessage = "";
         public IActionResult Index()
         {
+            var rootDir = System.Reflection.Assembly.GetExecutingAssembly().CodeBase;
             return View();
         }
 
@@ -44,6 +45,8 @@ namespace WebAppClient.Controllers
                 }
                 else
                 {
+                    
+
                     return Content("An error occurred.");
                 }
 
